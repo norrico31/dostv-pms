@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ManageUserRolesPage from "./pages/ManageUserRoles";
@@ -10,8 +10,9 @@ import { PrivateRoute, PublicRoute } from "./components/PrivateRoute";
 export default function App(): ReactElement {
   return (
     <AppProvider>
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
+          {}
           <Route
             path="/login"
             element={
@@ -20,6 +21,8 @@ export default function App(): ReactElement {
               </PublicRoute>
             }
           />
+
+          {}
           <Route
             path="/home"
             element={
@@ -28,6 +31,8 @@ export default function App(): ReactElement {
               </PrivateRoute>
             }
           />
+
+          {}
           <Route
             path="/users"
             element={
@@ -36,6 +41,7 @@ export default function App(): ReactElement {
               </PrivateRoute>
             }
           />
+
           <Route
             path="/manage-roles"
             element={
@@ -44,6 +50,8 @@ export default function App(): ReactElement {
               </PrivateRoute>
             }
           />
+
+          {}
           <Route
             path="/"
             element={
@@ -54,9 +62,11 @@ export default function App(): ReactElement {
               )
             }
           />
+
+          {}
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </AppProvider>
   );
 }
