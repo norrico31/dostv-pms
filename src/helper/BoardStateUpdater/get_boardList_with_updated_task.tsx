@@ -1,8 +1,4 @@
-import {
-  BoardColumnType,
-  BoardData,
-  BoardTask,
-} from "../../types/generalTypes";
+import { BoardColumnType, BoardData } from "../../types/generalTypes";
 
 //@ts-expect-error : lodash clone deep import issue
 import cloneDeep from "lodash.clonedeep";

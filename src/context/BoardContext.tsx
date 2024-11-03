@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
-import { BoardData, BoardTask, ChildrenProp } from "../types/generalTypes";
+import { BoardData, ChildrenProp } from "../types/generalTypes";
 import { DEV_ENVIROMENT } from "../config/config";
 import { ErrorMessage } from "../types/generalTypes";
 

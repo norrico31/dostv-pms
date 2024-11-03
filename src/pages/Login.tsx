@@ -38,7 +38,7 @@ export default function Login() {
         <div
           className="hidden lg:flex flex-col justify-center p-10 rounded-l-lg w-1/2 text-white"
           style={{
-            backgroundImage: `url('../../public/assets/dostv-square.png')`,
+            backgroundImage: `url('/assets/dostv-square.png')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

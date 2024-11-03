@@ -1,9 +1,5 @@
 import { useBoard } from "../../../context/BoardContext";
-import {
-  BoardColumnType,
-  BoardSubtask,
-  BoardTask,
-} from "../../../types/generalTypes";
+import { BoardColumnType, BoardSubtask } from "../../../types/generalTypes";
 import { useDrag } from "../../../hooks/useDrag";
 import { BoardLoading } from "../BoardStates/BoardLoading";
 import { BoardEmptyMessage } from "../BoardStates/BoardEmptyMessage";

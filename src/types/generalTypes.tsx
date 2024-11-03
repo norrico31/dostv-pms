@@ -14,14 +14,6 @@ export type BoardSubtask = {
   id: string;
 };
 
-export type BoardTask = {
-  title: string;
-  description: string;
-  status: string;
-  subtasks: BoardSubtask[];
-  id: string;
-};
-
 export type BoardColumnType = {
   name: string;
   id: string;

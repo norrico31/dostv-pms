@@ -6,7 +6,7 @@ import { useNavbar } from "../../../context/NavbarContext";
 import { TaskForm } from "./TaskForm";
 import { formTypeProp, useBoard } from "../../../context/BoardContext";
 import { BoardForm } from "./BoardForm";
-import { BoardData, BoardTask } from "../../../types/generalTypes";
+import { BoardData } from "../../../types/generalTypes";
 
 export type TaskFormProps = {
   // wtf is this tho

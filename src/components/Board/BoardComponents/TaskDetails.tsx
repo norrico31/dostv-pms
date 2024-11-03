@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useBoard } from "../../../context/BoardContext";
-import { BoardSubtask, BoardTask } from "../../../types/generalTypes";
+import { BoardSubtask } from "../../../types/generalTypes";
 import { CheckBox } from "../../CheckBox";
 import { DropDown } from "../../DropDown";
 import { KebabMenu } from "../../KebabMenu";
