@@ -1,40 +1,56 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { usersDb } from "../db/users-db";
+import { BASE_URL } from "../config/config";
+import { useUserContext } from "../context/UserContext";
 
 interface User {
   employeeId: string;
   roleId: string;
 }
 
+//! why is this not working 
+
 export default function Login() {
+  const { user, setUser, } = useUserContext()
   const [employeeNumber, setEmployeeNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); // Error state
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+
+  if (user?.token) return <Navigate to='/home' />
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const user = usersDb.users.find(
-      (user: User) => user.employeeId === employeeNumber
-    );
-
-    if (user && password === "dost1234") {
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("roleId", user.roleId);
-      localStorage.setItem("employeeId", user.employeeId);
-
-      navigate("/home");
-    } else {
-      setError("Invalid employee number or password");
+    try {
+      const res = await fetch(`${BASE_URL}/login`, { method: "POST", body: JSON.stringify({ email: employeeNumber, password }) })
+      const data = await res.json()
+      localStorage.setItem("data", JSON.stringify(data))
+      setUser(data)
+    } catch (error) {
+      console.log("error: ", error)
     }
+
+    // const user = usersDb.users.find(
+    //   (user: User) => user.employeeId === employeeNumber
+    // );
+
+    // if (user && password === "dost1234") {
+    //   localStorage.setItem("isLoggedIn", "true");
+    //   localStorage.setItem("roleId", user.roleId);
+    //   localStorage.setItem("employeeId", user.employeeId);
+
+    //   navigate("/home");
+    // } else {
+    //   setError("Invalid employee number or password");
+    // }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-400 to-blue-500">
       <div className="bg-white shadow-lg rounded-lg flex w-full max-w-7xl">
-        {}
+        { }
         <div
           className="hidden lg:flex flex-col justify-center p-10 rounded-l-lg w-1/2 text-white"
           style={{
@@ -44,7 +60,7 @@ export default function Login() {
           }}
         ></div>
 
-        {}
+        { }
         <div className="w-full lg:w-1/2 p-10">
           <h2 className="text-xl font-bold text-center mb-4">
             DOSTv Project Management System
@@ -55,7 +71,7 @@ export default function Login() {
           </p>
           <br />
 
-          {}
+          { }
           {error && <p className="text-custom-red text-center mb-4">{error}</p>}
 
           <form onSubmit={handleLogin}>
