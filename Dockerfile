@@ -1,20 +1,23 @@
-FROM node:lts-alpine as build
+FROM node:lts-alpine AS build-stage
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm install
 
 COPY . .
 
 RUN npm run build
 
-FROM nginx:latest as prod
+FROM node:lts-alpine AS production-stage
 
-COPY --from=build /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
+WORKDIR /app
 
-EXPOSE 80/tcp
+COPY --from=build-stage /app/dist /app/dist
 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+RUN npm install -g serve
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "dist", "-l", "3000"]
